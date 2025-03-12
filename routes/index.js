@@ -11,6 +11,6 @@ router.use("/listeningHistory", require("./listeningHistory"));
 router.use("/users", require("./users"));
 
 // Documentation routes
-//router.use('/api-docs', require('./swagger')); ### Uncomment this line when Swagger documentation is ready ###
+router.use('/api-docs', require('./swagger'));
 
 module.exports = router;
