@@ -1,6 +1,16 @@
 const router = require('express').Router();
 
-router.use('/api-docs', require('./swagger'));
+// Music routes
+router.use("/songs", require("./songs"));
+router.use("/likedSongs", require("./likedSongs"));
+router.use("/playlists", require("./playlists"));
+router.use("/curatedPlaylists", require("./curatedPlaylists"));
+router.use("/listeningHistory", require("./listeningHistory"));
 
+// User routes
+router.use("/users", require("./users"));
+
+// Documentation routes
+//router.use('/api-docs', require('./swagger')); ### Uncomment this line when Swagger documentation is ready ###
 
 module.exports = router;
