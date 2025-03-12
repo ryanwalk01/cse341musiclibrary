@@ -1,0 +1,37 @@
+############################
+### USERS ROUTES ##
+############################
+
+### test Routes should return 501 ( not implemented yet )
+GET http://localhost:8080/users
+
+### Get history by user id
+GEt http://localhost:8080/listeningHistory/users/67d0bf4a4d4aa324c25b3298/history
+
+
+############################
+### SONGS ROUTES ##
+############################
+
+### Get all songs
+GET http://localhost:8080/songs
+
+### Get song by id
+GET http://localhost:8080/songs/67d0c0484d4aa324c25b329e
+
+### Test Routes should return 501 ( not implemented yet )
+
+### Test playlists
+GET http://localhost:8080/playlists/users/67d0bf4a4d4aa324c25b3298/playlists
+
+### Test liked songs
+GET http://localhost:8080/likedSongs/users/67d0bf4a4d4aa324c25b3298/liked
+
+### Test curated playlists
+GET http://localhost:8080/curatedPlaylists/users/67d0bf4a4d4aa324c25b3298/curated
+
+
+
+
+
+

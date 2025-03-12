@@ -30,6 +30,6 @@ mongodb.initDb((err) => {
     console.log(err);
   } else {
     app.listen(port);
-    console.log(`Connected to MongoDB and listening on port ${port}`);
+    console.log(`Server is running on http://127.0.0.1:${port}`);
   }
 });

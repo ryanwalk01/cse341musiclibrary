@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 dotenv.config();
-const MongoClient = require('mongodb').MongoClient;
+const { MongoClient } = require('mongodb');
 
 let _db;
 
@@ -10,9 +10,9 @@ const initDb = (callback) => {
     return callback(null, _db);
   }
 
-  MongoClient.connect(process.env.MONGO_URI, { useUnifiedTopology: true })
+  MongoClient.connect(process.env.MONGO_URI)
     .then((client) => {
-      _db = client;
+      _db = client.db();
       return callback(null, _db);
     })
     .catch((err) => {
