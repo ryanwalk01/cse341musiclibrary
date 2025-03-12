@@ -5,10 +5,10 @@
     "description": "API to manage a music library.",
     "version": "1.0.0"
   },
-  "host": "https://cse341musiclibrary.onrender.com",
+  "host": "localhost:8080",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/songs/": {
