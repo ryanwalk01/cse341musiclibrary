@@ -7,9 +7,9 @@ const doc = {
         title: 'Music Library API',
         description: 'API to manage a music library.'
     },
-    host: 'https://cse341musiclibrary.onrender.com',
-    // host: 'localhost:8080',
-    schemes: ['https'],
+    // host: 'https://cse341musiclibrary.onrender.com',
+    host: 'localhost:8080',
+    schemes: ['http'],
     basePath: '/',
 };
 
