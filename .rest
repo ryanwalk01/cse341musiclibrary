@@ -29,6 +29,8 @@ GET http://localhost:8080/likedSongs/users/67d0bf4a4d4aa324c25b3298/liked
 
 ### Test curated playlists
 GET http://localhost:8080/curatedPlaylists/users/67d0bf4a4d4aa324c25b3298/curated
+### Test curated playlists
+GET http://localhost:8080/curatedPlaylists/users/67d0bf4a4d4aa324c25b3298/curated
 
 
 
