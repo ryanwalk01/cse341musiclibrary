@@ -8,7 +8,7 @@ const doc = {
         description: 'API to manage a music library.'
     },
     /* host: 'cse341musiclibrary.onrender.com', */
-    host: '127.0.0.1:8080', //<--Uncomment choose http for local test
+    host: process.env.HOST || '127.0.0.1:8080', //<--Uncomment choose http for local test, //<--Uncomment choose http for local test
     schemes: ['http','https'],
     basePath: '/',
 };
