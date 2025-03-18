@@ -5,10 +5,11 @@
     "description": "API to manage a music library.",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "127.0.0.1:8080",
   "basePath": "/",
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/songs/": {
@@ -22,10 +23,136 @@
             "description": "Internal Server Error"
           }
         }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "artist": {
+                  "example": "any"
+                },
+                "album": {
+                  "example": "any"
+                },
+                "release_date": {
+                  "example": "any"
+                },
+                "cover_art": {
+                  "example": "any"
+                },
+                "genre": {
+                  "example": "any"
+                },
+                "url": {
+                  "example": "any"
+                },
+                "songId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/songs/{id}": {
       "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "artist": {
+                  "example": "any"
+                },
+                "album": {
+                  "example": "any"
+                },
+                "release_date": {
+                  "example": "any"
+                },
+                "cover_art": {
+                  "example": "any"
+                },
+                "genre": {
+                  "example": "any"
+                },
+                "url": {
+                  "example": "any"
+                },
+                "songId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
         "description": "",
         "parameters": [
           {

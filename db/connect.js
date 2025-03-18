@@ -22,9 +22,11 @@ const initDb = (callback) => {
 
 const getDb = () => {
   if (!_db) {
-    throw Error('Database not initialized');
-  }
-  return _db;
+    console.error("Database connection failed");
+    throw new Error("Database connection failed");
+}
+console.log("Database connected successfully");
+return _db;
 };
 
 module.exports = {
