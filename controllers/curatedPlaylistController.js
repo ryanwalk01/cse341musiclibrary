@@ -4,7 +4,7 @@ const { ObjectId } = require("mongodb");
 const getCuratedPlaylists = async (req, res) => {
   try {
     const db = getDb();
-    const userId = ObjectId(req.params.id);
+    const userId = new ObjectId(req.params.id);
     const curatedPlaylists = await db.collection("curated_playlists").find({ userId: userId}).toArray();
     res.status(200).json(curatedPlaylists);
   } catch (error) {
@@ -15,50 +15,57 @@ const getCuratedPlaylists = async (req, res) => {
 const refreshCuratedPlaylists = async (req, res) => {
   try {
     const db = getDb();
-    const userId = ObjectId(req.params.user_id); 
+    const userId = new ObjectId(req.params.id).toString(); 
 
-    await db.collection("curated_playlists").deleteMany({ user_id: userId });
-
+    await db.collection("curated_playlists").deleteMany({ userId: userId });
+  
     const listeningHistory = await db.collection("listening_history")
-      .aggregate([{ $match: { user_id: userId } }, { $sample: { size: 5 } }]).toArray();
+      .aggregate([{ $match: { userId: userId } }, { $sample: { size: 5 } }]).toArray();
 
-    const historySongIds = listeningHistory.map(song => new ObjectId(song.song_id));
+    const historySongIds = listeningHistory.map(song => new ObjectId(song.song));
 
     const replaysPlaylist = {
-      user_id: userId,
+      userId: userId,
       name: "Replays",
       songs: historySongIds, 
       date_created: new Date()
     };
 
     const likedSongs = await db.collection("liked_songs")
-      .aggregate([{ $match: { user_id: userId } }, { $sample: { size: 5 } }]).toArray();
+      .aggregate([{ $match: { userId: userId } }, { $sample: { size: 5 } }]).toArray();
 
-    const likedSongIds = likedSongs.map(song => new ObjectId(song.song_id));
+    const likedSongIds = likedSongs.map(song => new ObjectId(song.song));
 
     const favoritesPlaylist = {
-      user_id: userId,
+      userId: userId,
       name: "Favorites",
       songs: likedSongIds,
       date_created: new Date()
     };
 
     const playlists = await db.collection("playlists")
-      .find({ user_id: userId }).toArray();
+      .find({ userId: userId }).toArray();
 
-    const allSongIds = playlists.flatMap(playlist => playlist.songs.map(song => new ObjectId(song.song_id)));
+    const allSongIds = playlists.flatMap(playlist => playlist.songs.map(song => new ObjectId(song.song)));
 
     const playlistSongIds = [];
-    while (playlistSongIds.length < 5) {
-      const randomIndex = Math.floor(Math.random() * allSongIds.length);
-      const randomSongId = allSongIds[randomIndex];
-      if (!playlistSongIds.includes(randomSongId)) {
-        playlistSongIds.push(randomSongId); 
+    const maxSongs = Math.min(5, allSongIds.length);
+    if (allSongIds.length <= 5) {
+      playlistSongIds.push(...allSongIds);
+    } else {
+
+      while (playlistSongIds.length < 5) {
+        const randomIndex = Math.floor(Math.random() * allSongIds.length);
+        const randomSongId = allSongIds[randomIndex];
+
+        if (!playlistSongIds.includes(randomSongId)) {
+          playlistSongIds.push(randomSongId);
+        }
       }
     }
-
+    
     const mixPlaylist = {
-      user_id: userId,
+      userId: userId,
       name: "Mix",
       songs: playlistSongIds,
       date_created: new Date()
