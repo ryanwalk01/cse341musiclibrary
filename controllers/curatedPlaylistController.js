@@ -5,7 +5,7 @@ const getCuratedPlaylists = async (req, res) => {
   try {
     const db = getDb();
     const userId = new ObjectId(req.params.id);
-    const curatedPlaylists = await db.collection("curated_playlists").find({ userId: userId}).toArray();
+    const curatedPlaylists = await db.collection("curated_playlists").find({ userId: userId }).toArray();
     res.status(200).json(curatedPlaylists);
   } catch (error) {
     res.status(500).json({ message: "Error fetching curated playlists", error });
@@ -15,10 +15,10 @@ const getCuratedPlaylists = async (req, res) => {
 const refreshCuratedPlaylists = async (req, res) => {
   try {
     const db = getDb();
-    const userId = new ObjectId(req.params.id).toString(); 
+    const userId = new ObjectId(req.params.id).toString();
 
     await db.collection("curated_playlists").deleteMany({ userId: userId });
-  
+
     const listeningHistory = await db.collection("listening_history")
       .aggregate([{ $match: { userId: userId } }, { $sample: { size: 5 } }]).toArray();
 
@@ -27,7 +27,7 @@ const refreshCuratedPlaylists = async (req, res) => {
     const replaysPlaylist = {
       userId: userId,
       name: "Replays",
-      songs: historySongIds, 
+      songs: historySongIds,
       date_created: new Date()
     };
 
@@ -63,7 +63,7 @@ const refreshCuratedPlaylists = async (req, res) => {
         }
       }
     }
-    
+
     const mixPlaylist = {
       userId: userId,
       name: "Mix",
