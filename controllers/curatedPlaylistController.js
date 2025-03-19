@@ -49,7 +49,7 @@ const refreshCuratedPlaylists = async (req, res) => {
     const allSongIds = playlists.flatMap(playlist => playlist.songs.map(song => new ObjectId(song.song)));
 
     const playlistSongIds = [];
-    const maxSongs = Math.min(5, allSongIds.length);
+
     if (allSongIds.length <= 5) {
       playlistSongIds.push(...allSongIds);
     } else {
