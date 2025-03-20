@@ -23,6 +23,10 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { session: false }),
   (req, res) => {
+    if (!req.user) {
+      return res.status(401).json({ message: "Authentication failed" });
+    }
+
     const token = generateToken(req.user);
     res.status(200).json({
       message: "Authentication successful",
@@ -32,14 +36,16 @@ router.get(
   }
 );
 
-// Login (Placeholder for manual login)
-router.post("/login", async (req, res) => {
-  res.status(501).json({ message: "Login functionality not implemented yet" });
-});
 
 // Logout (Placeholder)
-router.post("/logout", async (req, res) => {
-  res.status(501).json({ message: "Logout functionality not implemented yet" });
+router.post("/logout", (req, res) => {
+  res
+    .status(200)
+    .json({
+      message:
+        "Logout successful. Please discard your token on the client-side.",
+    });
 });
+
 
 module.exports = router;
