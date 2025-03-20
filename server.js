@@ -1,11 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 require('dotenv').config();
+require('./config/passport');
 
 const app = express();
 const port = process.env.PORT || 8080;
 const MongoClient = require('mongodb').MongoClient;
 const mongodb = require('./db/connect');
+const passport = require("passport");
+
+// Initialize Passport
+app.use(passport.initialize());
+
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use('/', require('./routes'));

@@ -13,4 +13,7 @@ router.use("/users", require("./users"));
 // Documentation routes
 router.use('/api-docs', require('./swagger'));
 
+// Auth routes
+router.use("/auth", require("./auth"));
+
 module.exports = router;
