@@ -31,15 +31,15 @@ const getUserById = async (req, res) => {
 
 // CREATE a new user
 const createUser = async (req, res) => {
-  const { name, email, oathId, userId } = req.body;
+  const { email, firstName, lastName, role } = req.body;
 
-  if (!name || !email || !oathId || !userId) {
+  if (!email || !firstName || !lastName) {
     return res.status(400).json({ message: "Missing required fields" });
   }
 
   try {
     const db = getDb();
-    const newUser = { name, email, oathId, userId };
+    const newUser = { email, firstName, lastName, role: role || "user", createdAt: new Date()};
 
     const result = await db.collection("users").insertOne(newUser);
 
@@ -59,10 +59,10 @@ const createUser = async (req, res) => {
 
 // UPDATE an existing user by ID
 const updateUser = async (req, res) => {
-  const { name, email, oathId, userId } = req.body;
+  const { email, firstName, lastName, role } = req.body;
   const userIdParam = req.params.id;
 
-  if (!name && !email && !oathId && !userId) {
+  if (!email && !firstName && !lastName && !role) {
     return res.status(400).json({ message: "No fields to update" });
   }
 
@@ -70,10 +70,10 @@ const updateUser = async (req, res) => {
     const db = getDb();
     const updatedUser = {
       $set: {
-        name,
         email,
-        oathId,
-        userId,
+        firstName,
+        lastName,
+        role
       },
     };
 
