@@ -14,7 +14,6 @@ const passport = require("passport");
 app.use(passport.initialize());
 
 app.use(cors());
-
 app.use(bodyParser.json());
 app.use('/', require('./routes'));
 
@@ -29,15 +28,23 @@ app.use((req, res, next) => {
   next();
 });
 
+// Catch uncaught exceptions
 process.on('uncaughtException', (err, origin) => {
   console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
 });
 
+// MongoDB initialization
 mongodb.initDb((err) => {
   if (err) {
     console.log(err);
   } else {
-    app.listen(port);
-    console.log(`Server is running on http://127.0.0.1:${port}`);
+    if (process.env.NODE_ENV !== 'test') {
+      app.listen(port, () => {
+        console.log(`Server is running on http://127.0.0.1:${port}`);
+      });
+    }
   }
 });
+
+// Export app for testing purposes
+module.exports = app;
