@@ -5,7 +5,6 @@ router.use("/songs", require("./songs"));
 router.use("/likedSongs", require("./likedSongs"));
 router.use("/playlists", require("./playlists"));
 router.use("/curatedPlaylists", require("./curatedPlaylists"));
-router.use("/listeningHistory", require("./listeningHistory"));
 
 // User routes
 router.use("/users", require("./users"));
