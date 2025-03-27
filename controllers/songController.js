@@ -42,31 +42,49 @@ const getSongById = async (req, res) => {
 
 // CREATE a new song
 const createSong = async (req, res) => {
-  const { title, artist, album, release_date, cover_art, genre, url, songId } = req.body;
-
-  if (!title || !artist || !album || !release_date || !cover_art || !genre || !url || !songId) {
-    return res.status(400).json({ message: "Missing required fields" });
-  }
-
   try {
     const db = getDb();
-    const newSong = { title, artist, album, release_date, cover_art, genre, url, songId };
+    const {
+      title,
+      artist,
+      album,
+      release_date,
+      cover_art,
+      genre,
+      url,
+      songId,
+    } = req.body;
+
+    const newSong = {
+      title,
+      artist,
+      album,
+      release_date,
+      cover_art,
+      genre,
+      url,
+      songId,
+      createdAt: new Date(),
+    };
 
     const result = await db.collection("songs").insertOne(newSong);
 
     if (result.insertedId) {
       res.status(201).json({
         message: "Song added successfully",
-        song: { ...newSong, _id: result.insertedId }
+        song: { ...newSong, _id: result.insertedId },
       });
     } else {
       res.status(500).json({ message: "Error inserting song" });
     }
   } catch (error) {
     console.error("Error adding song:", error);
-    res.status(500).json({ message: "Error adding song", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error adding song", error: error.message });
   }
 };
+
 
 // UPDATE an existing song by ID
 const updateSong = async (req, res) => {
