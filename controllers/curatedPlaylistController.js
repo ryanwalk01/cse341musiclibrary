@@ -19,18 +19,6 @@ const refreshCuratedPlaylists = async (req, res) => {
 
     await db.collection("curated_playlists").deleteMany({ userId: userId });
 
-    const listeningHistory = await db.collection("listening_history")
-      .aggregate([{ $match: { userId: userId } }, { $sample: { size: 5 } }]).toArray();
-
-    const historySongIds = listeningHistory.map(song => new ObjectId(song.song));
-
-    const replaysPlaylist = {
-      userId: userId,
-      name: "Replays",
-      songs: historySongIds,
-      date_created: new Date()
-    };
-
     const likedSongs = await db.collection("liked_songs")
       .aggregate([{ $match: { userId: userId } }, { $sample: { size: 5 } }]).toArray();
 
@@ -71,7 +59,7 @@ const refreshCuratedPlaylists = async (req, res) => {
       date_created: new Date()
     };
 
-    await db.collection("curated_playlists").insertMany([ replaysPlaylist, favoritesPlaylist, mixPlaylist ]);
+    await db.collection("curated_playlists").insertMany([ favoritesPlaylist, mixPlaylist ]);
 
     res.status(200).json({ message: "Curated playlists refreshed" });
   } catch (error) {
