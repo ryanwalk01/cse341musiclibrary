@@ -659,16 +659,16 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
-                  "example": "any"
-                },
                 "email": {
                   "example": "any"
                 },
-                "oathId": {
+                "firstName": {
                   "example": "any"
                 },
-                "userId": {
+                "lastName": {
+                  "example": "any"
+                },
+                "role": {
                   "example": "any"
                 }
               }
@@ -739,16 +739,16 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
-                  "example": "any"
-                },
                 "email": {
                   "example": "any"
                 },
-                "oathId": {
+                "firstName": {
                   "example": "any"
                 },
-                "userId": {
+                "lastName": {
+                  "example": "any"
+                },
+                "role": {
                   "example": "any"
                 }
               }

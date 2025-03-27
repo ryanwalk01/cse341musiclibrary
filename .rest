@@ -4,10 +4,36 @@
 
 ### test Routes should return 501 ( not implemented yet )
 GET http://localhost:8080/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q0OTMxYzNkM2MwYjk5YjdiOWViZmEiLCJlbWFpbCI6Im1pbGFtZWxvc2Nob29sQGdtYWlsLmNvbSIsImlhdCI6MTc0MzAyODg1MiwiZXhwIjoxNzQzMDMyNDUyfQ.36ud7qDXHeIevDzC6szOYf5el5MeREyE3e0pPiuzcns
 
 ### Get history by user id
 GEt http://localhost:8080/listeningHistory/users/67d0bf4a4d4aa324c25b3298/history
 
+### create user
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+    "email": "test@example.com",
+    "firstName": "John",
+    "lastName": "Doe"
+}
+
+
+### Create a new song
+POST http://localhost:8080/songs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q0OTMxYzNkM2MwYjk5YjdiOWViZmEiLCJlbWFpbCI6Im1pbGFtZWxvc2Nob29sQGdtYWlsLmNvbSIsImlhdCI6MTc0MzAyODg1MiwiZXhwIjoxNzQzMDMyNDUyfQ.36ud7qDXHeIevDzC6szOYf5el5MeREyE3e0pPiuzcns
+
+{
+  "title": "Local Create",
+  "artist": "Ryan Walker",
+  "album": "CSE341",
+  "release_date": "2025-03-26",
+  "cover_art": "https://brightspotcdn.byui.edu/dims4/default/041182f/2147483647/strip/true/crop/100x58+0+0/resize/76x44!/quality/90/?url=https%3A%2F%2Fbyu-idaho-brightspot-production-us-east-2.s3.us-east-2.amazonaws.com%2Ff2%2F6f%2Fa2c043a64e0488068d9dc10578cd%2Fbyu-idaho-logo-blue-100.png",
+  "genre": "Country",
+  "url": "https://www.youtube.com/watch?v=62TrmUvQGjo"
+}
 
 ############################
 ### SONGS ROUTES ##
@@ -22,7 +48,19 @@ GET http://localhost:8080/songs/67d0c0484d4aa324c25b329e
 ### Test Routes should return 501 ( not implemented yet )
 
 ### Test playlists
-GET http://localhost:8080/playlists/users/67d0bf4a4d4aa324c25b3298/playlists
+GET http://localhost:8080/playlists/users/67d0bf4a4d4aa324c25b329a/playlists
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q0OTMxYzNkM2MwYjk5YjdiOWViZmEiLCJlbWFpbCI6Im1pbGFtZWxvc2Nob29sQGdtYWlsLmNvbSIsImlhdCI6MTc0MzAyODg1MiwiZXhwIjoxNzQzMDMyNDUyfQ.36ud7qDXHeIevDzC6szOYf5el5MeREyE3e0pPiuzcns
+
+
+### Create playlist
+POST http://localhost:8080/playlists/users/67d0bf4a4d4aa324c25b329a/playlists
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2Q0OTMxYzNkM2MwYjk5YjdiOWViZmEiLCJlbWFpbCI6Im1pbGFtZWxvc2Nob29sQGdtYWlsLmNvbSIsImlhdCI6MTc0MzAyODg1MiwiZXhwIjoxNzQzMDMyNDUyfQ.36ud7qDXHeIevDzC6szOYf5el5MeREyE3e0pPiuzcns
+
+{
+  "name": "My Focus Jams",
+  "songs": ["123abc", "456def"]
+}
 
 ### Test liked songs
 GET http://localhost:8080/likedSongs/users/67d0bf4a4d4aa324c25b3298/liked

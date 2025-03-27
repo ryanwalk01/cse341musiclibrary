@@ -32,7 +32,7 @@ const createPlaylist = async (req, res) => {
   const playlist = {
     userId,
     name,
-    songs: songs ? songs.map(songId => new ObjectId(songId)) : [],
+    songs: songs || [],
     created_at: new Date().toISOString(),
   };
 
