@@ -4,11 +4,11 @@ const app = require("../server");
 const { getDb } = require("../db/connect");
 const { ObjectId } = require("mongodb");
 
-// Create a mock valid token using JWT_SECRET from environment // Adjust expiration time if needed
+// Create a mock valid token using JWT_SECRET from environment
 const mockValidToken = jwt.sign(
-  { userId: '67e3618201972b9408c14739' },
+  { userId: "67e3618201972b9408c14739" },
   process.env.JWT_SECRET, 
-  { expiresIn: '1h' }  
+  { expiresIn: "1h" }  
 );
 
 // Mock the database functions
@@ -62,17 +62,16 @@ describe("Song Controller", () => {
     expect(res.body).toEqual(mockSong);
   });
 
-  // Test for POST create a new song
-  it("should create a new song", async () => {
+  // Test for POST create a new song with validation
+  it("should create a new song with valid data", async () => {
     const newSong = {
       title: "New Song",
       artist: "New Artist",
       album: "New Album",
       release_date: "2023-01-01",
-      cover_art: "url_to_cover_art",
       genre: "Pop",
-      url: "url_to_song",
-      songId: "song123",
+      cover_art: "https://example.com/cover.jpg",
+      url: "https://example.com/song.mp3",
     };
 
     getDb.mockReturnValue({
@@ -94,17 +93,36 @@ describe("Song Controller", () => {
     expect(res.body.song.title).toBe(newSong.title);
   });
 
-  // Test for PUT update song
-  it("should update a song by ID", async () => {
+  // Test for POST create song with missing fields (validation failure)
+  it("should return 400 if required fields are missing in POST", async () => {
+    const incompleteSong = {
+      title: "Incomplete Song",
+      artist: "", // Missing artist field
+      release_date: "invalid-date", // Invalid date format
+      cover_art: "not-a-valid-url", // Invalid URL format
+    };
+
+    const res = await request(app)
+      .post("/songs")
+      .send(incompleteSong)
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${mockValidToken}`);
+
+    expect(res.status).toBe(400);
+    expect(res.body.errors).toBeDefined();
+    expect(res.body.errors.length).toBeGreaterThan(0);
+  });
+
+  // Test for PUT update song with validation
+  it("should update a song by ID with valid data", async () => {
     const updatedSong = {
       title: "Updated Song",
       artist: "Updated Artist",
       album: "Updated Album",
-      release_date: "2023-01-01",
-      cover_art: "updated_cover_art_url",
-      genre: "Pop",
-      url: "updated_url",
-      songId: "updatedSong123",
+      release_date: "2024-06-15",
+      genre: "Rock",
+      cover_art: "https://example.com/updated_cover.jpg",
+      url: "https://example.com/updated_song.mp3",
     };
 
     const songId = new ObjectId().toString();
@@ -127,6 +145,26 @@ describe("Song Controller", () => {
     expect(res.body.message).toBe("Song updated successfully");
   });
 
+  // Test for PUT update song with invalid data (validation failure)
+  it("should return 400 if update contains invalid data", async () => {
+    const invalidUpdate = {
+      title: "", // Empty title
+      cover_art: "invalid-url", // Invalid URL
+    };
+
+    const songId = new ObjectId().toString();
+
+    const res = await request(app)
+      .put(`/songs/${songId}`)
+      .send(invalidUpdate)
+      .set("Accept", "application/json")
+      .set("Authorization", `Bearer ${mockValidToken}`);
+
+    expect(res.status).toBe(400);
+    expect(res.body.errors).toBeDefined();
+    expect(res.body.errors.length).toBeGreaterThan(0);
+  });
+
   // Test for DELETE song by ID
   it("should delete a song by ID", async () => {
     const songId = new ObjectId().toString();
@@ -147,5 +185,15 @@ describe("Song Controller", () => {
     expect(res.body.message).toBe("Song deleted successfully");
   });
 
+  // Test for DELETE song with invalid ID
+  it("should return 400 if deleting a song with invalid ID", async () => {
+    const invalidSongId = "123"; 
 
+    const res = await request(app)
+      .delete(`/songs/${invalidSongId}`)
+      .set("Authorization", `Bearer ${mockValidToken}`);
+      console.log(res.body);
+    expect(res.status).toBe(400);
+    expect(res.body.errors).toBeDefined();
+  });
 });
