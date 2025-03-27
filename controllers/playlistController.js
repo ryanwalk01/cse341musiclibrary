@@ -48,10 +48,10 @@ const createPlaylist = async (req, res) => {
 
 // Update a playlist
 const updatePlaylist = async (req, res) => {
-  const { playlistId } = req.params;
+  const { id } = req.params;
   const { name, songs } = req.body;
 
-  if (!ObjectId.isValid(playlistId)) {
+  if (!ObjectId.isValid(id)) {
     return res.status(400).json({ message: "Invalid playlist ID" });
   }
 
@@ -62,7 +62,7 @@ const updatePlaylist = async (req, res) => {
     if (songs) updateData.songs = songs.map(songId => new ObjectId(songId));
 
     const result = await db.collection("playlists").updateOne(
-      { _id: new ObjectId(playlistId) },
+      { _id: new ObjectId(id) },
       { $set: updateData }
     );
 
@@ -79,15 +79,15 @@ const updatePlaylist = async (req, res) => {
 
 // Delete a playlist
 const deletePlaylist = async (req, res) => {
-  const { playlistId } = req.params;
+  const { id } = req.params;
 
-  if (!ObjectId.isValid(playlistId)) {
+  if (!ObjectId.isValid(id)) {
     return res.status(400).json({ message: "Invalid playlist ID" });
   }
 
   try {
     const db = getDb();
-    const result = await db.collection("playlists").deleteOne({ _id: new ObjectId(playlistId) });
+    const result = await db.collection("playlists").deleteOne({ _id: new ObjectId(id) });
 
     if (result.deletedCount === 0) {
       return res.status(404).json({ message: "Playlist not found" });

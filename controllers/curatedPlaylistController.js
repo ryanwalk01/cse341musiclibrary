@@ -4,7 +4,7 @@ const { ObjectId } = require("mongodb");
 const getCuratedPlaylists = async (req, res) => {
   try {
     const db = getDb();
-    const userId = new ObjectId(req.params.id);
+    const userId = req.params.id;
     const curatedPlaylists = await db.collection("curated_playlists").find({ userId: userId }).toArray();
     res.status(200).json(curatedPlaylists);
   } catch (error) {

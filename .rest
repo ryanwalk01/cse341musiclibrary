@@ -4,16 +4,17 @@
 ############################
 
 GET http://localhost:8080/users
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 
 ### Get user by id
 GET http://localhost:8080/users/67d0bf4a4d4aa324c25b3298
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 
 ### Create user
-GET http://localhost:8080/users
-Authorization: Bearer <token>
+POST http://localhost:8080/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 Content-Type: application/json
+
 {
   "email": "localcreate@byui.edu",
   "firstName": "Local",
@@ -23,8 +24,9 @@ Content-Type: application/json
 
 ### Update user
 PUT http://localhost:8080/users/67e5907cf70fe04d64e03c58
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 Content-Type: application/json
+
 {
   "email": "localupdated@byui.edu",
   "firstName": "Local",
@@ -34,7 +36,7 @@ Content-Type: application/json
 
 ### Delete user
 DELETE http://localhost:8080/users/67e5907cf70fe04d64e03c58
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 
 ############################
 ### SONGS ROUTES ##
@@ -45,13 +47,13 @@ GET http://localhost:8080/songs
 
 ### Get song by id
 GET http://localhost:8080/songs/67d0c0484d4aa324c25b329e
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 
 
 ### Create song
 POST http://localhost:8080/songs
 Content-Type: application/json
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 
 {
   "title": "Local Create",
@@ -65,8 +67,7 @@ Authorization: Bearer <token>
 
 ### Update song
 PUT http://localhost:8080/songs/67e487eec16ddd3cba330953
-Authorization: Bearer <token>
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 Content-Type: application/json
 
 {
@@ -81,114 +82,82 @@ Content-Type: application/json
 
 ### Delete song
 DELETE http://localhost:8080/songs/67e487eec16ddd3cba330953
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 
 ############################
 ### Playlist ROUTES ##
 ############################
 
-### Test playlists
+### playlists by user id
 GET http://localhost:8080/playlists/users/67d0bf4a4d4aa324c25b3298/playlists
-Authorization: Bearer <token>
-
-### Playlist by id
-GET http://localhost:8080/playlists/67d0c1874d4aa324c25b32a9
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 
 ### Create playlist
-POST http://localhost:8080/playlists
-Authorization: Bearer <token>
+POST http://localhost:8080/playlists/users/67d0bf4a4d4aa324c25b3298/playlists
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 Content-Type: application/json
 
 {
-  "user_id": "67d0bf4a4d4aa324c25b3298",
-  "name": "Local REST",
-  "songs": [
-    {
-      "song_id": "67d0c0484d4aa324c25b329e",
-      "date_added": "2025-03-10"
-    },
-    {
-      "song_id": "67d0c0484d4aa324c25b32a2",
-      "date_added": "2025-03-10"
-    },
-    {
-      "song_id": "67d0c0484d4aa324c25b32a0",
-      "date_added": "2025-03-11"
-    }
-  ]
+ "name": "Local Create",
+ "songs": [
+   "67d0c0484d4aa324c25b329e",
+   "67d0c0484d4aa324c25b32a2",
+   "67d0c0484d4aa324c25b32a0"
+ ]
 }
 
 ### Update playlist
 PUT http://localhost:8080/playlists/67e59157f70fe04d64e03c5c
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 Content-Type: application/json
 
 {
-  "user_id": "67d0bf4a4d4aa324c25b3298",
-  "name": "Local REST Updated",
-  "songs": [
-    {
-      "song_id": "67d0c0484d4aa324c25b329e",
-      "date_added": "2025-03-10"
-    },
-    {
-      "song_id": "67d0c0484d4aa324c25b32a2",
-      "date_added": "2025-03-10"
-    },
-    {
-      "song_id": "67d0c0484d4aa324c25b32a0",
-      "date_added": "2025-03-11"
-    }
-  ]
+ "name": "Local Updated",
+ "songs": [
+   "67d0c0484d4aa324c25b329e",
+   "67d0c0484d4aa324c25b32a2",
+   "67d0c0484d4aa324c25b32a0"
+ ]
 }
 
 ### Delete playlist
-DELETE http://localhost:8080/playlists/67e59157f70fe04d64e03c5c
-Authorization: Bearer <token>
+DELETE http://localhost:8080/playlists/67d0c1874d4aa324c25b32aa
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 
 ############################
 ### Liked Songs ROUTES ##
 ############################
 
-### Test liked songs
+### All liked songs by user id
 GET http://localhost:8080/likedSongs/users/67d0bf4a4d4aa324c25b3298/liked
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 
-### Liked song by id
-GET http://localhost:8080/likedSongs/67d5c83bac36c0dce9d68c1d
-Authorization: Bearer <token>
-
-### Create liked song
-POST http://localhost:8080/likedSongs/song/67d0bf4a4d4aa324c25b3298/liked
-Authorization: Bearer <token>
+### Add liked song
+POST http://localhost:8080/likedSongs/users/67d0bf4a4d4aa324c25b3298/like
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 Content-Type: application/json
 
 {
-  "user_id": "67d0bf4a4d4aa324c25b3298",
-  "song_id": "67d0c0484d4aa324c25b32a0"
+  "songId": "67d0c0484d4aa324c25b32a0"
 }
 
-### Delete liked song
-DELETE http://localhost:8080/likedSongs/67d5c83bac36c0dce9d68c2e
-Authorization: Bearer <token>
+### Remove liked song
+DELETE http://localhost:8080/likedSongs/users/67d0bf4a4d4aa324c25b3298/unlike
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
+Content-Type: application/json
+
+{
+  "songId": "67d0c0484d4aa324c25b32a0"
+}
 
 ############################
 ### Curated Playlists ##
 ############################
 
-### Test curated playlists
-GET http://localhost:8080/curatedPlaylists/users/67d0bf4a4d4aa324c25b3298/curated
-Authorization: Bearer <token>
-
-### Get all curated playlists
-GET http://localhost:8080/curatedPlaylists
-Authorization: Bearer <token>
-
 ### Get curated playlist by user id
 GET http://localhost:8080/curatedPlaylists/users/67d0bf4a4d4aa324c25b3298/curated
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
 
 ### Refresh curated playlists
 POST http://localhost:8080/curatedPlaylists/users/67d0bf4a4d4aa324c25b3298/curated/refresh
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2N2RjODkyNGNhNDdlOGIyNzJiZGU4MzAiLCJlbWFpbCI6IndhbDE5MDU5QGJ5dWkuZWR1IiwiaWF0IjoxNzQzMTEwOTMwLCJleHAiOjE3NDMxMTQ1MzB9.-HpuVl_GKWk3yB6tZVdj4AdzUeqOAmcyKEa3IxNmt8E
