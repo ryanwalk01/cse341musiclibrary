@@ -1,0 +1,163 @@
+
+############################
+### USERS ROUTES ##
+############################
+
+GET https://cse341musiclibrary.onrender.com/users
+Authorization: Bearer <token>
+
+### Get user by id
+GET https://cse341musiclibrary.onrender.com/users/67d0bf4a4d4aa324c25b3298
+Authorization: Bearer <token>
+
+### Create user
+POST https://cse341musiclibrary.onrender.com/users
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "email": "rendercreate@byui.edu",
+  "firstName": "Render",
+  "lastName": "Create",
+  "role": "user"
+}
+
+### Update user
+PUT https://cse341musiclibrary.onrender.com/users/67e5907cf70fe04d64e03c58
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "email": "renderupdated@byui.edu",
+  "firstName": "Render",
+  "lastName": "Updated",
+  "role": "user"
+}
+
+### Delete user
+DELETE https://cse341musiclibrary.onrender.com/users/67e5907cf70fe04d64e03c58
+Authorization: Bearer <token>
+
+############################
+### SONGS ROUTES ##
+############################
+
+### Get all songs
+GET https://cse341musiclibrary.onrender.com/songs
+
+### Get song by id
+GET https://cse341musiclibrary.onrender.com/songs/67d0c0484d4aa324c25b329e
+Authorization: Bearer <token>
+
+
+### Create song
+POST https://cse341musiclibrary.onrender.com/songs
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+  "title": "Render Create",
+  "artist": "Ryan Walker",
+  "album": "CSE341",
+  "release_date": "2025-03-26",
+  "cover_art": "https://brightspotcdn.byui.edu/dims4/default/041182f/2147483647/strip/true/crop/100x58+0+0/resize/76x44!/quality/90/?url=https%3A%2F%2Fbyu-idaho-brightspot-production-us-east-2.s3.us-east-2.amazonaws.com%2Ff2%2F6f%2Fa2c043a64e0488068d9dc10578cd%2Fbyu-idaho-logo-blue-100.png",
+  "genre": "Country",
+  "url": "https://www.youtube.com/watch?v=62TrmUvQGjo"
+}
+
+### Update song
+PUT https://cse341musiclibrary.onrender.com/songs/67e487eec16ddd3cba330953
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "title": "Render REST Updated",
+  "artist": "Ryan Walker",
+  "album": "CSE341",
+  "release_date": "2025-03-26",
+  "cover_art": "https://brightspotcdn.byui.edu/dims4/default/041182f/2147483647/strip/true/crop/100x58+0+0/resize/76x44!/quality/90/?url=https%3A%2F%2Fbyu-idaho-brightspot-production-us-east-2.s3.us-east-2.amazonaws.com%2Ff2%2F6f%2Fa2c043a64e0488068d9dc10578cd%2Fbyu-idaho-logo-blue-100.png",
+  "genre": "Country",
+  "url": "https://www.youtube.com/watch?v=62TrmUvQGjo"
+}
+
+### Delete song
+DELETE https://cse341musiclibrary.onrender.com/songs/67e487eec16ddd3cba330953
+Authorization: Bearer <token>
+
+############################
+### Playlist ROUTES ##
+############################
+
+### playlists by user id
+GET https://cse341musiclibrary.onrender.com/playlists/users/67d0bf4a4d4aa324c25b3298/playlists
+Authorization: Bearer <token>
+
+### Create playlist
+POST https://cse341musiclibrary.onrender.com/playlists/users/67d0bf4a4d4aa324c25b3298/playlists
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+ "name": "Render Create",
+ "songs": [
+   "67d0c0484d4aa324c25b329e",
+   "67d0c0484d4aa324c25b32a2",
+   "67d0c0484d4aa324c25b32a0"
+ ]
+}
+
+### Update playlist
+PUT https://cse341musiclibrary.onrender.com/playlists/67e59157f70fe04d64e03c5c
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+ "name": "Render Updated",
+ "songs": [
+   "67d0c0484d4aa324c25b329e",
+   "67d0c0484d4aa324c25b32a2",
+   "67d0c0484d4aa324c25b32a0"
+ ]
+}
+
+### Delete playlist
+DELETE https://cse341musiclibrary.onrender.com/playlists/67d0c1874d4aa324c25b32aa
+Authorization: Bearer <token>
+
+############################
+### Liked Songs ROUTES ##
+############################
+
+### All liked songs by user id
+GET https://cse341musiclibrary.onrender.com/likedSongs/users/67d0bf4a4d4aa324c25b3298/liked
+Authorization: Bearer <token>
+
+### Add liked song
+POST https://cse341musiclibrary.onrender.com/likedSongs/users/67d0bf4a4d4aa324c25b3298/like
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "songId": "67d0c0484d4aa324c25b32a0"
+}
+
+### Remove liked song
+DELETE https://cse341musiclibrary.onrender.com/likedSongs/users/67d0bf4a4d4aa324c25b3298/unlike
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "songId": "67d0c0484d4aa324c25b32a0"
+}
+
+############################
+### Curated Playlists ##
+############################
+
+### Get curated playlist by user id
+GET https://cse341musiclibrary.onrender.com/curatedPlaylists/users/67d0bf4a4d4aa324c25b3298/curated
+Authorization: Bearer <token>
+
+### Refresh curated playlists
+POST https://cse341musiclibrary.onrender.com/curatedPlaylists/users/67d0bf4a4d4aa324c25b3298/curated/refresh
+Authorization: Bearer <token>
