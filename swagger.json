@@ -414,12 +414,12 @@
         }
       }
     },
-    "/playlists/playlists/{playlistId}": {
+    "/playlists/{id}": {
       "put": {
         "description": "",
         "parameters": [
           {
-            "name": "playlistId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -467,7 +467,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "playlistId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"

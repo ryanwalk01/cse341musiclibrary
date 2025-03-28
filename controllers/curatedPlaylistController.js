@@ -31,10 +31,16 @@ const refreshCuratedPlaylists = async (req, res) => {
       date_created: new Date()
     };
 
-    const playlists = await db.collection("playlists")
-      .find({ userId: userId }).toArray();
+    const playlists = await db
+      .collection("playlists")
+      .find({ user_id: userId })
+      .toArray();
 
-    const allSongIds = playlists.flatMap(playlist => playlist.songs.map(song => new ObjectId(song.song)));
+    const allSongIds = playlists.flatMap((playlist) =>
+      playlist.songs
+        .filter((song) => song.song_id) // just in case
+        .map((song) => new ObjectId(song.song_id))
+    );
 
     const playlistSongIds = [];
 
