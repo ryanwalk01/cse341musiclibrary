@@ -38,17 +38,17 @@ router.post(
 
 // CREATE a new playlist
 
-router.put("/playlists/:playlistId", 
+router.put("/playlists/:id", 
     authenticateUser, 
-    validateObjectIdParam("playlistId"),
+    validateObjectIdParam("id"),
     playlistController.updatePlaylist
 );
 
 // DELETE a playlist
 
-router.delete("/playlists/:playlistId", 
+router.delete("/playlists/:id", 
     authenticateUser, 
-    validateObjectIdParam("playlistId"),
+    validateObjectIdParam("id"),
     playlistController.deletePlaylist
 );
     
