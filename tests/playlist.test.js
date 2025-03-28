@@ -71,7 +71,7 @@ describe("Playlist Controller", () => {
       name: "Updated Playlist",
       songs: [],
     };
-    const playlistId = new ObjectId().toString();
+    const id = new ObjectId().toString();
 
     getDb.mockReturnValue({
       collection: jest.fn().mockReturnValue({
@@ -80,7 +80,7 @@ describe("Playlist Controller", () => {
     });
 
     const res = await request(app)
-      .put(`/playlists/playlists/${playlistId}`)
+      .put(`/playlists/${id}`)
       .send(updatedPlaylist)
       .set("Accept", "application/json")
       .set("Authorization", `Bearer ${mockValidToken}`);
@@ -91,7 +91,7 @@ describe("Playlist Controller", () => {
 
   // Test for DELETE a playlist
   it("should delete a playlist", async () => {
-    const playlistId = new ObjectId().toString();
+    const id = new ObjectId().toString();
 
     getDb.mockReturnValue({
       collection: jest.fn().mockReturnValue({
@@ -100,7 +100,7 @@ describe("Playlist Controller", () => {
     });
 
     const res = await request(app)
-      .delete(`/playlists/playlists/${playlistId}`)
+      .delete(`/playlists/${id}`)
       .set("Authorization", `Bearer ${mockValidToken}`);
 
     expect(res.status).toBe(200);
@@ -130,20 +130,20 @@ describe("Playlist Controller", () => {
     const invalidPlaylistId = "invalid-id";
   
     const resPut = await request(app)
-      .put(`/playlists/playlists/${invalidPlaylistId}`)
+      .put(`/playlists/${invalidPlaylistId}`)
       .set("Authorization", `Bearer ${mockValidToken}`);
   
     // Check the status and structure of the error message
     expect(resPut.status).toBe(400);
-    expect(resPut.body.errors[0].msg).toBe("Invalid playlistId");
+    expect(resPut.body.errors[0].msg).toBe("Invalid id");
   
     const resDelete = await request(app)
-      .delete(`/playlists/playlists/${invalidPlaylistId}`)
+      .delete(`/playlists/${invalidPlaylistId}`)
       .set("Authorization", `Bearer ${mockValidToken}`);
   
     // Check the status and structure of the error message
     expect(resDelete.status).toBe(400);
-    expect(resDelete.body.errors[0].msg).toBe("Invalid playlistId");
+    expect(resDelete.body.errors[0].msg).toBe("Invalid id");
   });
   
 
