@@ -3,6 +3,7 @@
 ### USERS ROUTES ##
 ############################
 
+### Get all users
 GET https://cse341musiclibrary.onrender.com/users
 Authorization: Bearer <token>
 
