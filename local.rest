@@ -3,6 +3,7 @@
 ### USERS ROUTES ##
 ############################
 
+### Get all users
 GET http://localhost:8080/users
 Authorization: Bearer <token>
 
